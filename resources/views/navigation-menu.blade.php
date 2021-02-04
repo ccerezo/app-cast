@@ -7,8 +7,13 @@
         ],
         [
             'name' => 'Categoría',
-            'route' => '#',
-            'active' => false
+            'route' => route('categorias.index'),
+            'active' => request()->routeIs('categorias.index')
+        ],
+        [
+            'name' => 'Bodegas',
+            'route' => route('bodegas.index'),
+            'active' => request()->routeIs('bodegas.index')
         ]
 
     ]
