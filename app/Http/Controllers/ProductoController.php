@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\Linea;
+use App\Models\Talla;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -29,7 +30,8 @@ class ProductoController extends Controller
     {
         $lineas = Linea::pluck('nombre','id');
         $categorias = Categoria::pluck('nombre','id');
-        return view('productos.create', compact('lineas','categorias'));
+        $tallas = Talla::pluck('numero1','id');
+        return view('productos.create', compact('lineas','categorias','tallas'));
     }
 
     /**

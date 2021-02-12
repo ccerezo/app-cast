@@ -50,6 +50,12 @@
                                             {!! Form::select('categoria_id', $categorias, null,
                                                             ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
                                         </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            {!! Form::label('tallas', 'Tallas', ['class' => 'block text-sm font-medium text-gray-700']) !!}
+                                            {!! Form::select('talla_id', $tallas, null,
+                                                            ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
