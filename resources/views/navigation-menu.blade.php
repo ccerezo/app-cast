@@ -14,6 +14,36 @@
             'name' => 'Bodegas',
             'route' => route('bodegas.index'),
             'active' => request()->routeIs('bodegas.index')
+        ],
+        [
+            'name' => 'Colores',
+            'route' => route('colors.index'),
+            'active' => request()->routeIs('colors.index')
+        ],
+        [
+            'name' => 'Linea',
+            'route' => route('lineas.index'),
+            'active' => request()->routeIs('lineas.index')
+        ],
+        [
+            'name' => 'Marca',
+            'route' => route('marcas.index'),
+            'active' => request()->routeIs('marcas.index')
+        ],
+        [
+            'name' => 'Modelo',
+            'route' => route('modelos.index'),
+            'active' => request()->routeIs('modelos.index')
+        ],
+        [
+            'name' => 'Tallas',
+            'route' => route('tallas.index'),
+            'active' => request()->routeIs('tallas.index')
+        ],
+        [
+            'name' => 'Productos',
+            'route' => route('productos.index'),
+            'active' => request()->routeIs('productos.index')
         ]
 
     ]

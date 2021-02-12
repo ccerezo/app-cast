@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Color;
+use App\Models\Talla;
 use Illuminate\Http\Request;
 
-class ColorController extends Controller
+class TallaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::all();
-        return view('colors.index', compact('colors'));
+        $tallas = Talla::all();
+        return view('tallas.index', compact('tallas'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        return view('colors.create');
+        return view('tallas.create');
     }
 
     /**
@@ -37,12 +37,11 @@ class ColorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required'
+            'numero1' => 'required'
         ]);
-        $color = Color::create($request->all());
+        $talla = Talla::create($request->all());
 
-        return redirect()->route('colors.edit', compact('color'))->with('info', 'El registro se creó con éxito.');
+        return redirect()->route('tallas.edit', compact('talla'))->with('info', 'El registro se creó con éxito.');
     }
 
     /**
@@ -51,9 +50,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show(Talla $talla)
     {
-        return view('colors.show', compact('color'));
+        return view('tallas.show', compact('talla'));
     }
 
     /**
@@ -62,9 +61,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit(Talla $talla)
     {
-        return view('colors.edit', compact('color'));
+        return view('tallas.edit', compact('talla'));
     }
 
     /**
@@ -74,16 +73,15 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(Request $request, Talla $talla)
     {
         $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required'
+            'numero1' => 'required'
         ]);
 
-        $color->update($request->all());
+        $talla->update($request->all());
 
-        return redirect()->route('colors.edit', $color)->with('info', 'Los datos se actualizaron con éxito');
+        return redirect()->route('tallas.edit', $talla)->with('info', 'Los datos se actualizaron con éxito');
     }
 
     /**
@@ -92,10 +90,10 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy(Talla $talla)
     {
-        $color->delete();
+        $talla->delete();
 
-        return redirect()->route('colors.index')->with('info', 'El registro se Eliminó con éxito');
+        return redirect()->route('tallas.index')->with('info', 'El registro se Eliminó con éxito');
     }
 }

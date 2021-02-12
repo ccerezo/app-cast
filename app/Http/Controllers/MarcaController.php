@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Color;
+use App\Models\Marca;
 use Illuminate\Http\Request;
 
-class ColorController extends Controller
+class MarcaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::all();
-        return view('colors.index', compact('colors'));
+        $marcas = Marca::all();
+        return view('marcas.index', compact('marcas'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        return view('colors.create');
+        return view('marcas.create');
     }
 
     /**
@@ -37,12 +37,11 @@ class ColorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required'
+            'nombre' => 'required'
         ]);
-        $color = Color::create($request->all());
+        $marca = Marca::create($request->all());
 
-        return redirect()->route('colors.edit', compact('color'))->with('info', 'El registro se creó con éxito.');
+        return redirect()->route('marcas.edit', compact('marca'))->with('info', 'El registro se creó con éxito.');;
     }
 
     /**
@@ -51,9 +50,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show(Marca $marca)
     {
-        return view('colors.show', compact('color'));
+        return view('marcas.show', compact('marca'));
     }
 
     /**
@@ -62,9 +61,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit(Marca $marca)
     {
-        return view('colors.edit', compact('color'));
+        return view('marcas.edit', compact('marca'));
     }
 
     /**
@@ -74,16 +73,15 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(Request $request, Marca $marca)
     {
         $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required'
+            'nombre' => 'required'
         ]);
 
-        $color->update($request->all());
+        $marca->update($request->all());
 
-        return redirect()->route('colors.edit', $color)->with('info', 'Los datos se actualizaron con éxito');
+        return redirect()->route('marcas.edit', $marca)->with('info', 'Los datos se actualizaron con éxito');
     }
 
     /**
@@ -92,10 +90,10 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy(Marca $marca)
     {
-        $color->delete();
+        $marca->delete();
 
-        return redirect()->route('colors.index')->with('info', 'El registro se Eliminó con éxito');
+        return redirect()->route('marcas.index')->with('info', 'El registro se Eliminó con éxito');
     }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Color;
+use App\Models\Producto;
+use App\Models\Categoria;
+use App\Models\Linea;
 use Illuminate\Http\Request;
 
-class ColorController extends Controller
+class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::all();
-        return view('colors.index', compact('colors'));
+        $productos = Producto::all();
+        return view('productos.index', compact('productos'));
     }
 
     /**
@@ -25,7 +27,9 @@ class ColorController extends Controller
      */
     public function create()
     {
-        return view('colors.create');
+        $lineas = Linea::pluck('nombre','id');
+        $categorias = Categoria::pluck('nombre','id');
+        return view('productos.create', compact('lineas','categorias'));
     }
 
     /**
@@ -36,13 +40,7 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required'
-        ]);
-        $color = Color::create($request->all());
-
-        return redirect()->route('colors.edit', compact('color'))->with('info', 'El registro se creó con éxito.');
+        //
     }
 
     /**
@@ -51,9 +49,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show($id)
     {
-        return view('colors.show', compact('color'));
+        //
     }
 
     /**
@@ -62,9 +60,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit($id)
     {
-        return view('colors.edit', compact('color'));
+        //
     }
 
     /**
@@ -74,16 +72,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required'
-        ]);
-
-        $color->update($request->all());
-
-        return redirect()->route('colors.edit', $color)->with('info', 'Los datos se actualizaron con éxito');
+        //
     }
 
     /**
@@ -92,10 +83,8 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy($id)
     {
-        $color->delete();
-
-        return redirect()->route('colors.index')->with('info', 'El registro se Eliminó con éxito');
+        //
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Color;
+use App\Models\Modelo;
 use Illuminate\Http\Request;
 
-class ColorController extends Controller
+class ModeloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::all();
-        return view('colors.index', compact('colors'));
+        $modelos = Modelo::all();
+        return view('modelos.index', compact('modelos'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        return view('colors.create');
+        return view('modelos.create');
     }
 
     /**
@@ -40,9 +40,9 @@ class ColorController extends Controller
             'nombre' => 'required',
             'codigo' => 'required'
         ]);
-        $color = Color::create($request->all());
+        $modelo = Modelo::create($request->all());
 
-        return redirect()->route('colors.edit', compact('color'))->with('info', 'El registro se creó con éxito.');
+        return redirect()->route('modelos.edit', compact('modelo'))->with('info', 'El registro se creó con éxito.');
     }
 
     /**
@@ -51,9 +51,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show(Modelo $modelo)
     {
-        return view('colors.show', compact('color'));
+        return view('modelos.show', compact('modelo'));
     }
 
     /**
@@ -62,9 +62,9 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit(Modelo $modelo)
     {
-        return view('colors.edit', compact('color'));
+        return view('modelos.edit', compact('modelo'));
     }
 
     /**
@@ -74,16 +74,16 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(Request $request, Modelo $modelo)
     {
         $request->validate([
             'nombre' => 'required',
             'codigo' => 'required'
         ]);
 
-        $color->update($request->all());
+        $modelo->update($request->all());
 
-        return redirect()->route('colors.edit', $color)->with('info', 'Los datos se actualizaron con éxito');
+        return redirect()->route('modelos.edit', $modelo)->with('info', 'Los datos se actualizaron con éxito');
     }
 
     /**
@@ -92,10 +92,10 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy(Modelo $modelo)
     {
-        $color->delete();
+        $modelo->delete();
 
-        return redirect()->route('colors.index')->with('info', 'El registro se Eliminó con éxito');
+        return redirect()->route('modelos.index')->with('info', 'El registro se Eliminó con éxito');
     }
 }

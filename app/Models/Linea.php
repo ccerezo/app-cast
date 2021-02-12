@@ -9,6 +9,8 @@ class Linea extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nombre','codigo','descripcion','activo'];
+
     public function productos() {
         return $this->hasMany('App\Models\Producto');
     }
