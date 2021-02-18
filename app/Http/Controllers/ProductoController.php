@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bodega;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\Color;
 use App\Models\Linea;
+use App\Models\Marca;
+use App\Models\Modelo;
 use App\Models\Talla;
 use Illuminate\Http\Request;
 
@@ -30,8 +34,12 @@ class ProductoController extends Controller
     {
         $lineas = Linea::pluck('nombre','id');
         $categorias = Categoria::pluck('nombre','id');
-        $tallas = Talla::pluck('numero1','id');
-        return view('productos.create', compact('lineas','categorias','tallas'));
+        $tallas = Talla::all();
+        $bodegas = Bodega::pluck('nombre','id');
+        $marcas = Marca::pluck('nombre','id');
+        $modelos = Modelo::pluck('nombre','id');
+        $colores = Color::all();
+        return view('productos.create', compact('lineas','categorias','tallas','bodegas','marcas','modelos','colores'));
     }
 
     /**
@@ -42,7 +50,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -51,7 +59,7 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Producto $producto)
     {
         //
     }

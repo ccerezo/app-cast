@@ -40,6 +40,21 @@
                                             @enderror
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
+                                            {!! Form::label('bodega', 'Bodega', ['class' => 'block text-sm font-medium text-gray-700']) !!}
+                                            {!! Form::select('bodega_id', $bodegas, null,
+                                                            ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            {!! Form::label('marca', 'Marca', ['class' => 'block text-sm font-medium text-gray-700']) !!}
+                                            {!! Form::select('marca_id', $marcas, null,
+                                                            ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            {!! Form::label('modelo', 'Modelo', ['class' => 'block text-sm font-medium text-gray-700']) !!}
+                                            {!! Form::select('modelo_id', $modelos, null,
+                                                            ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
                                             {!! Form::label('linea', 'Linea', ['class' => 'block text-sm font-medium text-gray-700']) !!}
                                             {!! Form::select('linea_id', $lineas, null,
                                                             ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
@@ -50,11 +65,65 @@
                                             {!! Form::select('categoria_id', $categorias, null,
                                                             ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
                                         </div>
+                                        <div class="col-span-6 sm:col-span-6">
+                                            {!! Form::label('tallaje', 'Tallaje', ['class' => 'block text-sm font-medium text-gray-700']) !!}
+                                        </div>
 
-                                        <div class="col-span-6 sm:col-span-3">
-                                            {!! Form::label('tallas', 'Tallas', ['class' => 'block text-sm font-medium text-gray-700']) !!}
-                                            {!! Form::select('talla_id', $tallas, null,
-                                                            ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
+                                        <div class="col-span-12 sm:col-span-6">
+                                            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+
+                                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                                <table class="min-w-full divide-y divide-gray-200">
+                                                    <tbody class="bg-white divide-y divide-gray-200">
+                                                        <tr>
+                                                            <td class="px-4 py-2 whitespace-nowrap">
+                                                            </td>
+                                                        @foreach ($colores as $color)
+
+                                                        <td class="px-4 py-2 whitespace-nowrap">
+                                                            <div class="flex items-center">
+                                                                <div class="ml-2">
+                                                                    <div class="text-sm font-medium text-gray-900">
+                                                                        {!! Form::checkbox('colores[]', $color->id, null, ['class' => 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded']) !!}
+                                                                        {!! $color->nombre !!}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        @endforeach
+                                                        </tr>
+                                                        @foreach ($tallas as $talla)
+                                                        <tr>
+                                                        <td class="px-4 py-2 whitespace-nowrap">
+                                                            <div class="flex items-center">
+                                                                <div class="ml-2">
+                                                                    <div class="text-sm font-medium text-gray-900">
+                                                                        {!! Form::checkbox('tallas[]', $talla->id, null, ['class' => 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded']) !!}
+                                                                        {!! $talla->numero1 !!}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        @foreach ($colores as $color)
+                                                        <td class="px-4 py-2 whitespace-nowrap">
+                                                            <div class="flex items-center">
+                                                                <div class="ml-2">
+                                                                    <div class="text-sm font-medium text-gray-900">
+                                                                        {!! Form::number('stock[]', null, ['class' => 'focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 py-0.5 px-1 rounded-md text-center']) !!}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        @endforeach
+                                                        </tr>
+                                                        @endforeach
+                                                    <!-- More items... -->
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
