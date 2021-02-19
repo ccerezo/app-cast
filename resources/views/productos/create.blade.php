@@ -66,7 +66,7 @@
                                                             ['class' => 'mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm']) !!}
                                         </div>
                                         <div class="col-span-6 sm:col-span-6">
-                                            {!! Form::label('tallaje', 'Tallaje', ['class' => 'block text-sm font-medium text-gray-700']) !!}
+                                            {!! Form::label('tallaje', 'Tallaje: Color/Stock', ['class' => 'block text-sm font-medium text-gray-700']) !!}
                                         </div>
 
                                         <div class="col-span-12 sm:col-span-6">
@@ -76,40 +76,24 @@
                                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                                 <table class="min-w-full divide-y divide-gray-200">
                                                     <tbody class="bg-white divide-y divide-gray-200">
-                                                        <tr>
-                                                            <td class="px-4 py-2 whitespace-nowrap">
-                                                            </td>
-                                                        @foreach ($colores as $color)
-
-                                                        <td class="px-4 py-2 whitespace-nowrap">
-                                                            <div class="flex items-center">
-                                                                <div class="ml-2">
-                                                                    <div class="text-sm font-medium text-gray-900">
-                                                                        {!! Form::checkbox('colores[]', $color->id, null, ['class' => 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded']) !!}
-                                                                        {!! $color->nombre !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        @endforeach
-                                                        </tr>
                                                         @foreach ($tallas as $talla)
                                                         <tr>
-                                                        <td class="px-4 py-2 whitespace-nowrap">
+                                                        <td class="px-2 py-2 whitespace-nowrap">
                                                             <div class="flex items-center">
                                                                 <div class="ml-2">
                                                                     <div class="text-sm font-medium text-gray-900">
-                                                                        {!! Form::checkbox('tallas[]', $talla->id, null, ['class' => 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded']) !!}
+                                                                        {!! Form::checkbox('tallas[]', $talla->id, 'check', ['class' => 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded']) !!}
                                                                         {!! $talla->numero1 !!}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         @foreach ($colores as $color)
-                                                        <td class="px-4 py-2 whitespace-nowrap">
+                                                        <td class="px-2 py-2 whitespace-nowrap">
                                                             <div class="flex items-center">
                                                                 <div class="ml-2">
                                                                     <div class="text-sm font-medium text-gray-900">
+                                                                        {!! Form::label('color', $color->nombre, ['class' => 'block text-sm font-medium text-gray-700']) !!}
                                                                         {!! Form::number('stock[]', null, ['class' => 'focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 py-0.5 px-1 rounded-md text-center']) !!}
                                                                     </div>
                                                                 </div>

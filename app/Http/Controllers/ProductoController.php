@@ -50,7 +50,44 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $request->validate([
+            'codigo' => 'required'
+        ]);
+        $productos = $request->all();
+        //return $productos;
+        $colores = Color::all();
+        foreach($colores as $color) {
+            $color_id[] = $color->id;
+        }
+        //return $color_id;
+        $lista = array();
+        $k = 0;
+        for($i = 0; $i < count($productos['tallas']); $i++){
+            for($j = 0; $j < count($color_id); $j++){
+                $indice_color = 0;
+                //if(is_null($productos['stock'][$k])){
+                    $p = new Producto();
+                    $p->codigo = $productos['codigo'];
+                    $p->bodega_id = $productos['bodega_id'];
+                    $p->marca_id = $productos['marca_id'];
+                    $p->modelo_id = $productos['modelo_id'];
+                    $p->linea_id = $productos['linea_id'];
+                    $p->categoria_id = $productos['categoria_id'];
+                    $p->talla_id = $productos['tallas'][$i];
+                    $p->color_id = $color_id[$j];
+                    $p->stock = $productos['stock'][$k]+0;
+                    //array_push($lista,$p);
+                    $lista[] = $p;
+                    $k++;
+                /*} else {
+                    $lista[] = 'vacio';
+                }*/
+                $indice_color++;
+            }
+        }
+        return $lista;
+        //return $p;
+        //return $request->all();
     }
 
     /**
