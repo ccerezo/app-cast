@@ -54,18 +54,42 @@ class ProductoController extends Controller
             'codigo' => 'required'
         ]);
         $productos = $request->all();
-        //return $productos;
+        return $productos;
+        //return $productos['stock'][3][1];
         $colores = Color::all();
         foreach($colores as $color) {
             $color_id[] = $color->id;
         }
+        $tallas = Talla::all();
+        foreach($tallas as $talla) {
+            $talla_id[] = $talla->id;
+        }
+        /*for($i = 0; $i < count($tallas); $i++){
+            $p = new Producto();
+            $p->codigo = $productos['codigo'];
+            $p->bodega_id = $productos['bodega_id'];
+            $p->marca_id = $productos['marca_id'];
+            $p->modelo_id = $productos['modelo_id'];
+            $p->linea_id = $productos['linea_id'];
+            $p->categoria_id = $productos['categoria_id'];
+            $t = $talla_id[i];
+            $c = $color_id[i];
+            $productos['stock'][$t]
+            $p->stock = $productos['stock'][$t];
+            $p->talla_id = $productos['tallas'][$i];
+            $p->color_id = $color_id[$j];
+
+        }*/
+
+
+
         //return $color_id;
-        $lista = array();
+        /*$lista = array();
         $k = 0;
         for($i = 0; $i < count($productos['tallas']); $i++){
             for($j = 0; $j < count($color_id); $j++){
                 $indice_color = 0;
-                //if(is_null($productos['stock'][$k])){
+                if(is_null($productos['stock'][$k])){
                     $p = new Producto();
                     $p->codigo = $productos['codigo'];
                     $p->bodega_id = $productos['bodega_id'];
@@ -75,17 +99,17 @@ class ProductoController extends Controller
                     $p->categoria_id = $productos['categoria_id'];
                     $p->talla_id = $productos['tallas'][$i];
                     $p->color_id = $color_id[$j];
-                    $p->stock = $productos['stock'][$k]+0;
+                    $p->stock = $productos['stock'][$k];
                     //array_push($lista,$p);
                     $lista[] = $p;
-                    $k++;
-                /*} else {
+                } else {
                     $lista[] = 'vacio';
-                }*/
+                }
                 $indice_color++;
+                $k++;
             }
-        }
-        return $lista;
+        }*/
+        //return $lista;
         //return $p;
         //return $request->all();
     }
