@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <!--<x-jet-welcome />-->
-                <h1>Bienvenido al aplicativo de control APP-CAST</h1>
+                <h1 class="p-5">Bienvenido al aplicativo de control APP-CAST</h1>
             </div>
         </div>
     </div>

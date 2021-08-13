@@ -54,64 +54,56 @@ class ProductoController extends Controller
             'codigo' => 'required'
         ]);
         $productos = $request->all();
-        return $productos;
-        //return $productos['stock'][3][1];
-        $colores = Color::all();
-        foreach($colores as $color) {
-            $color_id[] = $color->id;
-        }
-        $tallas = Talla::all();
-        foreach($tallas as $talla) {
-            $talla_id[] = $talla->id;
-        }
-        /*for($i = 0; $i < count($tallas); $i++){
-            $p = new Producto();
-            $p->codigo = $productos['codigo'];
-            $p->bodega_id = $productos['bodega_id'];
-            $p->marca_id = $productos['marca_id'];
-            $p->modelo_id = $productos['modelo_id'];
-            $p->linea_id = $productos['linea_id'];
-            $p->categoria_id = $productos['categoria_id'];
-            $t = $talla_id[i];
-            $c = $color_id[i];
-            $productos['stock'][$t]
-            $p->stock = $productos['stock'][$t];
-            $p->talla_id = $productos['tallas'][$i];
-            $p->color_id = $color_id[$j];
+        //return $productos;
 
-        }*/
-
-
-
-        //return $color_id;
-        /*$lista = array();
-        $k = 0;
-        for($i = 0; $i < count($productos['tallas']); $i++){
-            for($j = 0; $j < count($color_id); $j++){
-                $indice_color = 0;
-                if(is_null($productos['stock'][$k])){
-                    $p = new Producto();
+        foreach($productos['stock'] as $key_talla => $valor_talla) {
+            $lista = array();
+            foreach($valor_talla as $key_color => $valor_color) {
+                if(!(is_null($valor_color[0]))){
+                    /*$p = new Producto();
+                    $p->_token = 'cqy9VqXla958HBd438JeZEnMrcGlqsQ8xdaMckZR';
                     $p->codigo = $productos['codigo'];
                     $p->bodega_id = $productos['bodega_id'];
                     $p->marca_id = $productos['marca_id'];
                     $p->modelo_id = $productos['modelo_id'];
                     $p->linea_id = $productos['linea_id'];
                     $p->categoria_id = $productos['categoria_id'];
-                    $p->talla_id = $productos['tallas'][$i];
-                    $p->color_id = $color_id[$j];
-                    $p->stock = $productos['stock'][$k];
+                    $p->descripcion = 'descripcion';
+                    $p->precio_produccion = 10;
+                    $p->precio_mayorista = 15;
+                    $p->precio_venta_publico = 20;
+                    $p->descuento = 0;
+                    $p->stock = $valor_color[0];
+                    $p->talla_id = $key_talla;
+                    $p->color_id = $key_color;*/
+                    $producto = Producto::create(
+                        [
+                        '_token' => 'cqy9VqXla958HBd438JeZEnMrcGlqsQ8xdaMckZR',
+                        'codigo' => $productos['codigo'],
+                        'bodega_id' => $productos['bodega_id'],
+                        'marca_id' => $productos['marca_id'],
+                        'modelo_id' => $productos['modelo_id'],
+                        'linea_id' => $productos['linea_id'],
+                        'categoria_id' => $productos['categoria_id'],
+                        'descripcion' => 'descripcion',
+                        'precio_produccion' => 10,
+                        'precio_mayorista' => 15,
+                        'precio_venta_publico' => 20,
+                        'descuento' => 0,
+                        'stock' => $valor_color[0],
+                        'talla_id' => $key_talla,
+                        'color_id' => $key_color
+                    ]);
+
                     //array_push($lista,$p);
-                    $lista[] = $p;
-                } else {
-                    $lista[] = 'vacio';
+
                 }
-                $indice_color++;
-                $k++;
             }
-        }*/
-        //return $lista;
-        //return $p;
-        //return $request->all();
+        }
+        //$modelo = Modelo::create($p);
+        //$modelo = Modelo::create($request->all());
+
+        return redirect()->route('productos.edit', compact('producto'))->with('info', 'El registro se creó con éxito.');
     }
 
     /**

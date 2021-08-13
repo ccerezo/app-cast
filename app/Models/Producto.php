@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
-    protected $fillable = ['codigo','descripcion', 'precio_produccion','precio_mayorista','precio_venta_publico','stock','descuento','image','activo','bodega_id'];
+    protected $fillable = ['codigo','descripcion', 'precio_produccion','precio_mayorista','precio_venta_publico',
+                            'stock','descuento','image','activo','bodega_id','marca_id','categoria_id',
+                            'modelo_id', 'linea_id', 'talla_id','color_id'];
 
     public function bodega() {
         return $this->belongsTo('App\Models\Bodega');

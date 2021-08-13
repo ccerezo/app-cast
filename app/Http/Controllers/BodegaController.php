@@ -37,8 +37,7 @@ class BodegaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required'
+            'nombre' => 'required'
         ]);
         $bodega = Bodega::create($request->all());
 
